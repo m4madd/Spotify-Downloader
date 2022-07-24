@@ -72,13 +72,13 @@ async def spotify_dl(_,message):
             song = await fetch_spotify_track(client,item_id)
             cForChat = await message.reply_chat_action("record_audio")
             #sleeeps = await sleep (0.9)
-            PForCopy = await message.reply_photo(song.get('cover'),caption=f"🎧 Title : `{song['name']}`\n🎤 Artist : `{song['artist']}`\n💽 Album : `{song['album']}`\n🗓 Release Year: `{song['year']}`")
+            PForCopy = await message.reply_photo(song.get('cover'),caption=f"🎧 عنوان : `{song['name']}`\n🎤 هنرمند : `{song['artist']}`\n💽 آلبوم : `{song['album']}`\n🗓 سال انتشار : `{song['year']}`")
             path = await download_songs(song,randomdir)
             thumbnail = await thumb_down(song.get('cover'),song.get('deezer_id'))
             dForChat = await message.reply_chat_action("upload_audio")
             audio = FLAC(path)
             audio["YEAR_OF_RELEASE"] = song.get('year')
-            audio["WEBSITE"] = "https://t.me/Spotify_downloa_bot"
+            audio["WEBSITE"] = "https://t.me/Spowtifybot"
             audio["GEEK_SCORE"] = "9"
             audio["ARTIST"] = song.get('artist')                                                                            
             audio["ALBUM"] = song.get('album')
@@ -111,7 +111,7 @@ async def spotify_dl(_,message):
                 song = await fetch_spotify_track(client,track.get('track').get('id'))
                 cForChat = await message.reply_chat_action("record_audio")
                #sleeeps = await sleep (0.9)
-                PForCopy = await message.reply_photo(song.get('cover'),caption=f"🎧 عنوان : `{song['name']}`\n🎤 هنرمند : `{song['artist']}`\n💽 آلبوم : `{song['album']}`\n🗓 سال انتشار: `{song['year']}`\n🔢 Track No: `{song['playlist_num']}`\n🔢 Total Track: `{total_tracks}`")
+                PForCopy = await message.reply_photo(song.get('cover'),caption=f"🎧 عنوان : `{song['name']}`\n🎤 هنرمند : `{song['artist']}`\n💽 آلبوم : `{song['album']}`\n🗓 سال انتشار : `{song['year']}`\n🔢 Track No: `{song['playlist_num']}`\n🔢 Total Track: `{total_tracks}`")
                 path = await download_songs(song,randomdir)
                 thumbnail = await thumb_down(song.get('cover'),song.get('deezer_id'))
                 cForChat = await message.reply_chat_action("upload_audio")
@@ -138,7 +138,7 @@ async def spotify_dl(_,message):
                 audi.save()
                 AForCopy = await message.reply_audio(path,performer=song.get('artist'),title=f"{song.get('name')} - {song.get('artist')}",caption=f"[{song.get('name')}](https://open.spotify.com/track/{song.get('deezer_id')}) | {song.get('album')} - {song.get('artist')}",thumb=thumbnail,parse_mode="markdown",quote=True)
                 feedback = await message.reply_text(f"انجام شد✅",   
-                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Feedback", callback_data="feed")]]))
+                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="بازخورد", callback_data="feed")]]))
                 shutil.rmtree(randomdir)
                 if LOG_GROUP:
                     await sleep(2.5)
@@ -155,7 +155,7 @@ async def spotify_dl(_,message):
                 sleeping  = await sleep(0.8)
                 audio = FLAC(path)
                 audio["YEAR_OF_RELEASE"] = song.get('year')
-                audio["WEBSITE"] = "https://t.me/Spotify_downloa_bot"
+                audio["WEBSITE"] = "https://t.me/Spowtifybott"
                 audio["GEEK_SCORE"] = "9"
                 audio["ARTIST"] = song.get('artist')                                                                         
                 audio["ALBUM"] = song.get('album')
@@ -175,7 +175,7 @@ async def spotify_dl(_,message):
                 audi.save()
                 AForCopy = await message.reply_audio(path,performer=song.get('artist'),title=f"{song.get('name')} - {song.get('artist')}",caption=f"[{song.get('name')}](https://open.spotify.com/track/{song.get('deezer_id')}) | {song.get('album')} - {song.get('artist')}",thumb=thumbnail,parse_mode="markdown",quote=True)
                 feedback = await message.reply_text(f"انجام شد✅",   
-                  reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Feedback", callback_data="feed")]]))
+                  reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="بازخورد", callback_data="feed")]]))
                 shutil.rmtree(randomdir)
                 if LOG_GROUP:
                     await sleep(2.5)
@@ -186,7 +186,7 @@ async def spotify_dl(_,message):
         LOGGER.error(e)
         K = await m.edit_text(e)
         H = await message.reply_text(f"انجام شد✅",   
-             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Error Detected", callback_data="bug")]]))
+             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="خطا شناسایی شد", callback_data="bug")]]))
         await message.reply_text(f"you can also get it from Saavn type /saavn music_name")
         await forward(K,H)
 
