@@ -56,12 +56,12 @@ async def spotify_dl(_,message):
             for item in items:
                 cForChat = await message.reply_chat_action("record_audio")
                 sleeeps = await sleep (0.9)
-                PForCopy = await message.reply_photo(item[5],caption=f"✔️ Episode Name : `{item[3]}`\n🕔 Duration : {item[4]//60}:{item[4]%60}")
+                PForCopy = await message.reply_photo(item[5],caption=f"✔️ نام اپیزود : `{item[3]}`\n🕔 مدت زمان : {item[4]//60}:{item[4]%60}")
                 fileLink = await ytdl_down(audio_opt(randomdir,item[2]),f"https://open.spotify.com/episode/{item[0]}")
                 thumbnail = await thumb_down(item[5],item[0])
                 sleeping  = await sleep(2.0)
                 DForChat =  await message.reply_chat_action("upload_audio")
-                #reply = await message.reply_text(f"sorry we removed support of  episode 😔 pls send other types")
+                #reply = await message.reply_text(f"با عرض پوزش ما پشتیبانی از این قسمت را حذف کرده ایم 😔")
                 AForCopy = await message.reply_audio(fileLink,title=item[3].replace("_"," "),performer="Spotify",duration=int(item[4]),caption=f"[{item[3]}](https://open.spotify.com/episode/{item[0]})",thumb=thumbnail,parse_mode="markdown",quote=True)
                 shutil.rmtree(randomdir)
                 if LOG_GROUP:
@@ -97,7 +97,7 @@ async def spotify_dl(_,message):
             audi.add_picture(image)
             audi.save()
             AForCopy = await message.reply_audio(path,performer=f"{song.get('artist')}",title=f"{song.get('name')} - {song.get('artist')}",caption=f"[{song.get('name')}](https://open.spotify.com/track/{song.get('deezer_id')}) | {song.get('album')} - {song.get('artist')}",thumb=thumbnail, parse_mode="markdown",quote=True)
-            feedback = await message.reply_text(f"Done✅",   
+            feedback = await message.reply_text(f"انجام شد✅",   
              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Feedback", callback_data="feed")]]))
             shutil.rmtree(randomdir)
             if LOG_GROUP:
@@ -111,14 +111,14 @@ async def spotify_dl(_,message):
                 song = await fetch_spotify_track(client,track.get('track').get('id'))
                 cForChat = await message.reply_chat_action("record_audio")
                #sleeeps = await sleep (0.9)
-                PForCopy = await message.reply_photo(song.get('cover'),caption=f"🎧 Title : `{song['name']}`\n🎤 Artist : `{song['artist']}`\n💽 Album : `{song['album']}`\n🗓 Release Year: `{song['year']}`\n🔢 Track No: `{song['playlist_num']}`\n🔢 Total Track: `{total_tracks}`")
+                PForCopy = await message.reply_photo(song.get('cover'),caption=f"🎧 عنوان : `{song['name']}`\n🎤 هنرمند : `{song['artist']}`\n💽 آلبوم : `{song['album']}`\n🗓 سال انتشار: `{song['year']}`\n🔢 Track No: `{song['playlist_num']}`\n🔢 Total Track: `{total_tracks}`")
                 path = await download_songs(song,randomdir)
                 thumbnail = await thumb_down(song.get('cover'),song.get('deezer_id'))
                 cForChat = await message.reply_chat_action("upload_audio")
                 sleeping  = await sleep(0.8)
                 audio = FLAC(path)
                 audio["YEAR_OF_RELEASE"] = song.get('year')
-                audio["WEBSITE"] = "https://t.me/Spotify_downloa_bot"
+                audio["WEBSITE"] = "https://t.me/Spowtifybot"
                 audio["GEEK_SCORE"] = "9"
                 audio["ARTIST"] = song.get('artist')                                                                           
                 audio["ALBUM"] = song.get('album')
@@ -137,7 +137,7 @@ async def spotify_dl(_,message):
                 audi.add_picture(image)
                 audi.save()
                 AForCopy = await message.reply_audio(path,performer=song.get('artist'),title=f"{song.get('name')} - {song.get('artist')}",caption=f"[{song.get('name')}](https://open.spotify.com/track/{song.get('deezer_id')}) | {song.get('album')} - {song.get('artist')}",thumb=thumbnail,parse_mode="markdown",quote=True)
-                feedback = await message.reply_text(f"Done✅",   
+                feedback = await message.reply_text(f"انجام شد✅",   
                  reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Feedback", callback_data="feed")]]))
                 shutil.rmtree(randomdir)
                 if LOG_GROUP:
@@ -149,7 +149,7 @@ async def spotify_dl(_,message):
             for track in tracks['items']:
                 song = await fetch_spotify_track(client,track.get('id'))
                #sleeeps = await sleep (0.9)
-                PForCopy = await message.reply_photo(song.get('cover'),caption=f"🎧 Title : `{song['name']}`\n🎤 Artist : `{song['artist']}`\n💽 Album : `{song['album']}`\nq🗓 Release Year: `{song['year']}`")
+                PForCopy = await message.reply_photo(song.get('cover'),caption=f"🎧 عنوان : `{song['name']}`\n🎤 هنرمند : `{song['artist']}`\n💽 آلبوم : `{song['album']}`\nq🗓 سال انتشار: `{song['year']}`")
                 path = await download_songs(song,randomdir)
                 thumbnail = await thumb_down(song.get('cover'),song.get('deezer_id'))
                 sleeping  = await sleep(0.8)
@@ -174,7 +174,7 @@ async def spotify_dl(_,message):
                 audi.add_picture(image)
                 audi.save()
                 AForCopy = await message.reply_audio(path,performer=song.get('artist'),title=f"{song.get('name')} - {song.get('artist')}",caption=f"[{song.get('name')}](https://open.spotify.com/track/{song.get('deezer_id')}) | {song.get('album')} - {song.get('artist')}",thumb=thumbnail,parse_mode="markdown",quote=True)
-                feedback = await message.reply_text(f"Done✅",   
+                feedback = await message.reply_text(f"انجام شد✅",   
                   reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Feedback", callback_data="feed")]]))
                 shutil.rmtree(randomdir)
                 if LOG_GROUP:
@@ -185,19 +185,19 @@ async def spotify_dl(_,message):
     except Exception as e:
         LOGGER.error(e)
         K = await m.edit_text(e)
-        H = await message.reply_text(f"Done✅",   
+        H = await message.reply_text(f"انجام شد✅",   
              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Error Detected", callback_data="bug")]]))
         await message.reply_text(f"you can also get it from Saavn type /saavn music_name")
         await forward(K,H)
 
 @Mbot.on_callback_query(filters.regex(r"feed"))
 async def feedback(_,query):
-      await query.message.edit(f"Feedback 🏴‍☠️",
+      await query.message.edit(f"بازخورد 🏴‍☠️",
                   reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Press here", url="https://t.me/dailychannelsbot?start=spotify_downloa_bot")]]))
 
 @Mbot.on_callback_query(filters.regex(r"bug"))                                                                                                          
 async def bug(_,query):                                                                                                                                  
-      await query.message.edit(f"please report to the dev with above error occurred message")
+      await query.message.edit(f"لطفا با پیام خطای بالا به من گزارش دهید")
       await sleep(2.3)
-      await query.message.edit(f"Bug Report 🪲",
-                  reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="Report to dev ", url="https://t.me/masterolic")]]))
+      await query.message.edit(f"گزارش باگ 🪲",
+                  reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="❤️‍🔥گزارش به من ", url="https://t.me/MMd_6")]]))
