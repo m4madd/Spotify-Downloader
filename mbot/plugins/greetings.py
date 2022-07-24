@@ -32,15 +32,15 @@ from os import execvp,sys
 async def start(client,message):
     reply_markup = [[
         InlineKeyboardButton(
-            text="Bot Channel", url="https://t.me/Spotify_downloa"),
+            text="کانال ما", url="https://t.me/spowtify_ch"),
         InlineKeyboardButton(
-            text="Repo",
-            url="https://github.com/Masterolic/Spotify-repo/"),
+            text="توسعه دهنده",
+            url="https://t.me/mmd_6"),
         InlineKeyboardButton(text="Help",callback_data="helphome")
         ],
         [
-            InlineKeyboardButton(text="Donate",
-            url="https://www.buymeacoffee.com/Masterolic"),
+            InlineKeyboardButton(text="حمایت",
+            url="https://t.me/spowtify_ch"),
         ]]
     if LOG_GROUP:
 
@@ -66,15 +66,12 @@ async def ping(client,message):
     start = datetime.now()
     await client.send(Ping(ping_id=0))
     ms = (datetime.now() - start).microseconds / 1000
-    await message.reply_text(f"**Pong!**\nResponse time: `{ms} ms`")
+    await message.reply_text(f"**Pong!**\nزمان پاسخگویی: `{ms} ms`")
 
 HELP = {
-    "Youtube": "Send **Youtube** Link in Chat to Download Song.",
-    "Spotify": "Send **Spotify** Track/Playlist/Album/Show/Episode's Link. I'll Download It For You.",
-    "Deezer": "Send Deezer Playlist/Album/Track Link. I'll Download It For You.",
-    "Jiosaavn": "Not Implemented yet",
-    "SoundCloud": "Not Implemented yet",
-    "Group": "Will add later."
+    "🎥 Youtube": "کافیه برای لینک یوتیوب رو ارسال کنی تا فایل آهنگ رو بهت بدم.",
+    "🎵 Spotify": "کافیه برای من لیست پخش/آلبوم/ترک ارسال کنی تا فایل آهنگ رو بهت بدم.",
+    "🎧 Deezer": "کافیه برای من لیست پخش/آلبوم/ترک ارسال کنی تا فایل آهنگ رو بهت بدم.",
 }
 
 
@@ -84,13 +81,13 @@ async def help(_,message):
         [InlineKeyboardButton(text=i, callback_data=f"help_{i}")] for i in HELP
     ]
 
-    await message.reply_text(f"Hello **{message.from_user.first_name}**, I'm **@spotify_downloa_bot**.\nI'm Here to download your music.",
+    await message.reply_text(f"سلام **{message.from_user.first_name}**, من **@spowtifybot** هستم.\nدانلود آهنگ از یوتیوب، اسپاتیفای و دیزر😊 .",
                         reply_markup=InlineKeyboardMarkup(button))
 
 @Mbot.on_callback_query(filters.regex(r"help_(.*?)"))
 async def helpbtn(_,query):
     i = query.data.replace("help_","")
-    button = InlineKeyboardMarkup([[InlineKeyboardButton("Back",callback_data="helphome")]])
+    button = InlineKeyboardMarkup([[InlineKeyboardButton("برگشت",callback_data="helphome")]])
     text = f"Help for **{i}**\n\n{HELP[i]}"
     await query.message.edit(text = text,reply_markup=button)
 
@@ -99,5 +96,5 @@ async def help_home(_,query):
     button = [
         [InlineKeyboardButton(text=i, callback_data=f"help_{i}")] for i in HELP
     ]
-    await query.message.edit(f"Hello **{query.from_user.first_name}**, I'm **@NeedMusicRobot**.\nI'm Here to download your music.",
+    await query.message.edit(f"سلام **{query.from_user.first_name}**, من **@spowtifybot** هستم.\nدانلود آهنگ از یوتیوب، اسپاتیفای و دیزر😊 .",
                         reply_markup=InlineKeyboardMarkup(button))
