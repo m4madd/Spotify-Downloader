@@ -187,7 +187,7 @@ async def spotify_dl(_,message):
         K = await m.edit_text(e)
         H = await message.reply_text(f"انجام شد✅",   
              reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="خطا شناسایی شد", callback_data="bug")]]))
-        await message.reply_text(f"you can also get it from Saavn type /saavn music_name")
+        await message.reply_text(f"😛فایل با موفقیت آپلود شد")
         await forward(K,H)
 
 @Mbot.on_callback_query(filters.regex(r"feed"))
@@ -197,7 +197,7 @@ async def feedback(_,query):
 
 @Mbot.on_callback_query(filters.regex(r"bug"))                                                                                                          
 async def bug(_,query):                                                                                                                                  
-      await query.message.edit(f"لطفا با پیام خطای بالا به من گزارش دهید")
+      await query.message.edit(f"لطفا با پیام خطای بالا به من گزارش دهید😶‍🌫️")
       await sleep(2.3)
       await query.message.edit(f"گزارش باگ 🪲",
                   reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="❤️‍🔥گزارش به من ", url="https://t.me/MMd_6")]]))
